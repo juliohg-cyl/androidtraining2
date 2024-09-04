@@ -40,8 +40,11 @@
         android:maxLength="10"/>
 
     <CheckBox
-        android:layout_width=""
-        android:layout_height="" />
+        android:id="@+id/check_remember"
+        android:text="@string/label_remember_username"
+        android:checked="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/action_validate"

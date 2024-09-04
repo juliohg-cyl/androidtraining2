@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +41,8 @@ class LoginActivity : AppCompatActivity() {
 
             val userName = findViewById<EditText>(R.id.input_username).text.toString()
             val password = findViewById<EditText>(R.id.input_password).text.toString()
-            val isValid = loginViewModel.validateClicked(userName, password)
-
+            val rememberIsChecked = findViewById<CheckBox>(R.id.check_remember).isChecked
+            val isValid = loginViewModel.validateClicked(userName, password, rememberIsChecked)
             if (isValid){
                 Snackbar.make(
                     findViewById<View>(R.id.main),
