@@ -11,18 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.enterprisejahg.androidtraining2.R
+import com.enterprisejahg.androidtraining2.features.login.LoginFactory
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
+
+
+    private lateinit var loginFactory: LoginFactory
+    private lateinit var loginViewModel: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        loginFactory = LoginFactory()
+        loginViewModel = loginFactory.provideLoginViewModel()
 
+        setContentView(R.layout.activity_login)
         setupView()
     }
 
@@ -37,6 +40,23 @@ class LoginActivity : AppCompatActivity() {
 
             val userName = findViewById<EditText>(R.id.input_username).text.toString()
             val password = findViewById<EditText>(R.id.input_password).text.toString()
+            val isValid = loginViewModel.validateClicked(userName, password)
+
+            if (isValid){
+                Snackbar.make(
+                    findViewById<View>(R.id.main),
+                    R.string.message_login_ok,
+                    Snackbar.LENGTH_SHORT).show()
+            }
+            else {
+                Snackbar.make(
+                    findViewById<View>(R.id.main),
+                    R.string.message_login_fails,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+
+
 
             Log.d("@dev", userName)
             Log.d("@dev", password)

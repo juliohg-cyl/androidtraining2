@@ -39,6 +39,10 @@
         android:layout_height="wrap_content"
         android:maxLength="10"/>
 
+    <CheckBox
+        android:layout_width=""
+        android:layout_height="" />
+
     <Button
         android:id="@+id/action_validate"
         android:text="@string/action_validate"
