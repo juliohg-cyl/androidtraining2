@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginFactory = LoginFactory()
+        loginFactory = LoginFactory(this)
         loginViewModel = loginFactory.provideLoginViewModel()
 
         setContentView(R.layout.activity_login)

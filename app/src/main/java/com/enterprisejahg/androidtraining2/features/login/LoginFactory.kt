@@ -1,5 +1,6 @@
 package com.enterprisejahg.androidtraining2.features.login
 
+import android.content.Context
 import com.enterprisejahg.androidtraining2.features.login.data.LoginDataRepository
 import com.enterprisejahg.androidtraining2.features.login.data.local.LoginXmlLocalDataSource
 import com.enterprisejahg.androidtraining2.features.login.data.remote.LoginMockRemoteDataSource
@@ -8,7 +9,7 @@ import com.enterprisejahg.androidtraining2.features.login.domain.SaveUsernameUse
 import com.enterprisejahg.androidtraining2.features.login.domain.SignInUseCase
 import com.enterprisejahg.androidtraining2.features.login.presentation.LoginViewModel
 
-class LoginFactory {
+class LoginFactory (private val context: Context){
 
     //Atributos de clase
     private val loginMockRemoteDataSource: LoginMockRemoteDataSource =
@@ -37,7 +38,7 @@ class LoginFactory {
     }
 
     private fun provideLoginXmlRemoteDataSource(): LoginXmlLocalDataSource {
-        return LoginXmlLocalDataSource()
+        return LoginXmlLocalDataSource(context)
     }
 
     private fun provideSignInUseCase(): SignInUseCase{
