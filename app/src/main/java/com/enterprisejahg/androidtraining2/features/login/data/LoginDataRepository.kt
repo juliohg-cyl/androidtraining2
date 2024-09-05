@@ -6,7 +6,8 @@ import com.enterprisejahg.androidtraining2.features.login.domain.LoginRepository
 
 class LoginDataRepository (
     private val localDataSource: LoginXmlLocalDataSource,
-    private val remoteDataSource: LoginMockRemoteDataSource):
+    private val remoteDataSource: LoginMockRemoteDataSource
+    ):
 
     LoginRepository {
 
@@ -17,5 +18,13 @@ class LoginDataRepository (
 
     override fun saveUsername(userName: String) {
         localDataSource.saveUsername(userName)
+    }
+
+    override fun deleteUsername() {
+        localDataSource.deleteUsername()
+    }
+
+    override fun getUsername(): String? {
+        return localDataSource.getUsername()
     }
 }

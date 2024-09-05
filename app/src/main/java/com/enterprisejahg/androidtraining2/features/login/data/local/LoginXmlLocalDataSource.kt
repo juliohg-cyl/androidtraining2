@@ -8,9 +8,25 @@ class LoginXmlLocalDataSource(private val context: Context) {
 
     val sharedPref = context.getSharedPreferences("username.xml", Context.MODE_PRIVATE)
 
+    private val keyUsername = "key_username"
+
     fun saveUsername(username: String){
         val editor = sharedPref.edit()
-        editor.putString("key_username",username)
+        editor.putString(keyUsername,username)
         editor.commit()
     }
+
+    fun deleteUsername(){
+        val editor = sharedPref.edit()
+        editor.remove(keyUsername)
+        editor.commit()
+    }
+
+    //La interrogación indica que el valor puede ser nulo
+
+    fun getUsername(): String? {
+
+        return sharedPref.getString(keyUsername,null)
+    }
+
 }
